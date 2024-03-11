@@ -42,10 +42,8 @@ public class Manager {
             claims.add(claim);
     }
 
-    public void printAll() {
-        for (Claim claim : claims) {
-            System.out.println(claim.toString());
-        }
+    public List<Claim> getAll() {
+        return claims;
     }
 
     public void exit() {
