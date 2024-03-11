@@ -1,1 +1,0 @@
-model.Claim{id=77777777, date=Mon Mar 11 14:33:23 ICT 2024, insured=null, exam_date=Mon Mar 11 14:33:23 ICT 2024, doc=null, amount=1000, bankInfo=null}
