@@ -1,52 +1,48 @@
-import com.google.gson.Gson;
+import command.*;
+import helper.Printer;
 import model.Claim;
 import model.Customer;
+import repository.ClaimRepository;
+
 import java.util.*;
-import java.util.function.Function;
 
 public class Manager {
-    private final Map<String, Function<Void, Boolean>> commands;
-    private final ClaimRepository claimRepository;
+    private final Map<String, Command> commands;
     private List<Customer> customers;
 
     public Manager() {
         commands = new HashMap<>();
-        commands.put("exit", this::exit);
-        commands.put("help", this::help);
-        commands.put("print", this::printClaims);
-        claimRepository = new ClaimRepository();
+        commands.put("exit", new ExitCommand());
+        commands.put("help", new HelpCommand());
+        commands.put("print", new PrintCommand());
+        commands.put("printOne", new PrintOneCommand());
+        commands.put("add", new CreateClaimCommand());
     }
 
     public Boolean exec(String command) {
+        // Parse command to name & params
+        String[] parsedCommand = command.split(" ");
+        String commandName = parsedCommand[0];
+        String[] params = new String[parsedCommand.length - 1];
+        System.arraycopy(parsedCommand, 1, params, 0, parsedCommand.length - 1);
+
         try {
-            return commands.get(command).apply(null);
+            // Check for --h flag to display information on the command
+            Command cmd = commands.get(commandName);
+            if (params.length > 0 && params[0].equals("--h")) {
+                cmd.help();
+                return true;
+            }
+
+            // Check parameter before execute command
+            if (cmd.verifyParams(params))
+                return cmd.exec(params);
+
+            return true;
         } catch (NullPointerException e) {
-            System.out.println("Unknown command, type help to see available command");
+            // Display error message in case of unknown command
+            Printer.error("Unknown command, type 'help' to see available command");
             return true;
         }
     }
-
-    private Boolean exit(Void unused) {
-        claimRepository.save();
-        return false;
-    }
-
-    private Boolean help(Void unused) {
-        System.out.println("""
-                USAGE:
-                \thelp\t->\tdisplay available commands
-                \texit\t->\texit the program
-                \tprint\t->\tdisplay the claims list
-                \tadd\t\t->\tstart the claim creation process""");
-        return true;
-    }
-
-    private Boolean printClaims(Void unused) {
-        for (Claim claim : claimRepository.getAll()) {
-            System.out.println(claim.toString());
-        }
-        return true;
-    }
-
-
 }

@@ -1,27 +1,25 @@
-import model.Claim;
-import model.Color;
+import helper.Printer;
 
 import java.util.*;
 
 public class Main {
 
     static Manager manager;
-    static String command;
-    static Scanner in;
 
     public static void main(String[] args) {
-        in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
         manager = new Manager();
+        String command;
 
         welcome();
         do {
-            command = in.next();
+            command = in.nextLine();
         } while (manager.exec(command));
     }
 
     public static void welcome() {
-        System.out.println(Color.BLUE + "Welcome to our insurance claim helper");
-        System.out.println("------------------------------------------" + Color.RESET);
+        Printer.hint("Welcome to our insurance claim helper");
+        Printer.hint("------------------------------------------");
         manager.exec("help");
     }
 }

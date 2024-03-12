@@ -1,6 +1,7 @@
+package repository;
+
 import model.Claim;
 import java.util.List;
-import java.util.UUID;
 
 public interface ClaimProcessManager {
     void add(Claim claim);
@@ -11,5 +12,5 @@ public interface ClaimProcessManager {
 
     List<Claim> getAll();
 
-    Claim getOne(UUID id);
+    Claim getOne(Number id);
 }

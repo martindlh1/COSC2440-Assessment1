@@ -1,13 +1,10 @@
 package model;
-
 import com.google.gson.Gson;
-
+import helper.IdGenerator;
 import java.util.*;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Claim {
-    private UUID id;
+    private final Number id;
     private Date date;
     private Customer insured;
     private Date exam_date;
@@ -16,7 +13,7 @@ public class Claim {
     private BankInfo bankInfo;
 
     public Claim(Date date, Customer insured, Date exam_date, String[] doc, Number amount, BankInfo bankInfo) {
-        this.id = UUID.randomUUID();
+        this.id = IdGenerator.generate10digitId();
         this.date = date;
         this.insured = insured;
         this.exam_date = exam_date;
@@ -25,20 +22,19 @@ public class Claim {
         this.bankInfo = bankInfo;
     }
 
-    public UUID getId() {
+    public Number getId() {
         return this.id;
     }
 
     @Override
     public String toString() {
-        return "id: " + id +
-                "\ndate: " + date +
-                "\ninsured: " + insured +
-                "\nexam_date: " + exam_date +
-                "\ndoc: " + Arrays.toString(doc) +
-                "\namount: " + amount +
-                "\nbankInfo: " + bankInfo +
-                "\n";
+        return ">\tid: " + id +
+                "\n\tdate: " + date +
+                "\n\tinsured: " + insured +
+                "\n\texam_date: " + exam_date +
+                "\n\tdoc: " + Arrays.toString(doc) +
+                "\n\tamount: " + amount +
+                "\n\tbankInfo: " + bankInfo;
     }
 
     public String toJson() {

@@ -1,3 +1,5 @@
+package repository;
+
 import com.google.gson.Gson;
 import model.Claim;
 
@@ -8,11 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class ClaimRepository implements ClaimProcessManager {
 
     private final List<Claim> claims;
+    private static final ClaimRepository instance = new ClaimRepository();
 
     public ClaimRepository() {
         try {
@@ -27,6 +29,10 @@ public class ClaimRepository implements ClaimProcessManager {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static ClaimRepository getInstance() {
+        return instance;
     }
 
     @Override
@@ -51,9 +57,9 @@ public class ClaimRepository implements ClaimProcessManager {
     }
 
     @Override
-    public Claim getOne(UUID id) {
+    public Claim getOne(Number id) {
         for (Claim claim : claims) {
-            if (claim.getId().equals(id))
+            if (claim.getId().toString().equals(id.toString()))
                 return claim;
         }
         return null;
