@@ -8,7 +8,6 @@ import java.util.*;
 
 public class Manager {
     private final Map<String, Command> commands;
-    private List<Customer> customers;
 
     public Manager() {
         commands = new HashMap<>();

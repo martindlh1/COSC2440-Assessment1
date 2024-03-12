@@ -17,8 +17,8 @@ public class HelpCommand implements Command {
                 \thelp\t\t\t\t\t\t\tdisplay available commands
                 \texit\t\t\t\t\t\t\texit the program
                 \tprint\t\t\t\t\t\t\tdisplay the claims list
-                \tprintOn\t\t\tid:int\t\t\tdisplay one claims
-                \tadd\t\t\t\tamount:int\t\tcreate a  new claim
+                \tprintOn\t\t\tid:int\t\t\tdisplay one claim (find by id)
+                \tadd\t\t\t\tamount:int\t\tcreate a new claim
                 Add --h flags after a command to get more information""");
         return true;
     }
