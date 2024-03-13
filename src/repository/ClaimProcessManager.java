@@ -8,7 +8,7 @@ public interface ClaimProcessManager {
 
     void update(Claim claim);
 
-    void delete(Claim claim);
+    boolean delete(Claim claim);
 
     List<Claim> getAll();
 

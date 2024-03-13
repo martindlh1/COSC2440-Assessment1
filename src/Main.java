@@ -11,6 +11,9 @@ public class Main {
         manager = new Manager();
         String command;
 
+        //Intercept program stop to properly save data
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> manager.exec("exit")));
+
         welcome();
         do {
             command = in.nextLine();

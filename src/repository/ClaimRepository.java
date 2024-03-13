@@ -47,8 +47,8 @@ public class ClaimRepository implements ClaimProcessManager {
     }
 
     @Override
-    public void delete(Claim claim) {
-        claims.remove(claim);
+    public boolean delete(Claim claim) {
+        return claims.remove(claim);
     }
 
     @Override
