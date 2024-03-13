@@ -9,7 +9,7 @@ public class PrintOneClaimCommand implements Command {
 
     @Override
     public void help() {
-        Printer.hint("The 'printOneClaim' command display one claim found by it's id");
+        Printer.hint("The 'printClaim' command display one claim found by it's id");
         Printer.hint("USAGE:\n\tprint id:integer");
     }
 
@@ -21,14 +21,14 @@ public class PrintOneClaimCommand implements Command {
             Printer.error("Claim not found");
             return true;
         }
-        Printer.result(claim.toString());
+        Printer.result(claim.toDetailedString());
         return true;
     }
 
     @Override
     public boolean verifyParams(String[] params) {
         if (params.length < 1) {
-            Printer.error("Command 'printOneClaim' take 1 parameter, type 'printOneClaim --h' to get more information");
+            Printer.error("Command 'printClaim' take 1 parameter, type 'printClaim --h' to get more information");
             return false;
         }
         try {

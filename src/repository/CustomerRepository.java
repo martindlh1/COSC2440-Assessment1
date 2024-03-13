@@ -43,6 +43,8 @@ public class CustomerRepository implements ProcessManager<Customer> {
 
     @Override
     public void update(Customer customer) {
+        customers.removeIf(c -> c.getId().equals(customer.getId()));
+        customers.add(customer);
     }
 
     @Override

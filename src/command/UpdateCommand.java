@@ -2,7 +2,9 @@ package command;
 
 import helper.Printer;
 import model.Claim;
+import model.Customer;
 import repository.ClaimRepository;
+import repository.CustomerRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +13,13 @@ import java.util.Scanner;
 
 public class UpdateCommand implements Command {
     private final ClaimRepository claimRepository = ClaimRepository.getInstance();
+    private final CustomerRepository customerRepository = CustomerRepository.getInstance();
 
     @Override
     public void help() {
         Printer.hint("The 'update' command update the selected claim");
         Printer.hint("USAGE:\n\tupdate id:integer option=option_value");
-        Printer.hint("OPTIONS:\n\tamount:integer");
+        Printer.hint("OPTIONS:\n\tamount:integer\n\tinsured:integer");
     }
 
     @Override
@@ -37,8 +40,17 @@ public class UpdateCommand implements Command {
             switch (param) {
                 case "amount":
                     claim.setAmount(Integer.parseInt(value));
+                case "insured":
+                    Customer oldInsured = customerRepository.getOne(claim.getInsured());
+                    Customer newInsured = customerRepository.getOne(Integer.parseInt(value));
+                    oldInsured.removeClaim(claim);
+                    newInsured.addClaim(claim);
+                    customerRepository.update(oldInsured);
+                    customerRepository.update(newInsured);
+                    claim.setInsured(Integer.parseInt(value));
             }
         }
+        claimRepository.update(claim);
         Printer.result("Claim successfully updated !");
         return true;
     }
@@ -74,6 +86,17 @@ public class UpdateCommand implements Command {
                         continue;
                     } catch (NumberFormatException e) {
                         Printer.error("Option value for 'amount' must be an integer.");
+                        return false;
+                    }
+                case "insuredId":
+                    try {
+                        if (customerRepository.getOne(Integer.parseInt(value)) == null) {
+                            Printer.error("Customer not found.");
+                            return false;
+                        }
+                        continue;
+                    } catch (NumberFormatException e) {
+                        Printer.error("Option value for 'insured' must be an integer.");
                         return false;
                     }
                 default:

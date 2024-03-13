@@ -12,7 +12,7 @@ public class Manager {
         commands.put("help", new HelpCommand());
         commands.put("printCustomers", new PrintCustomersCommand());
         commands.put("printClaims", new PrintClaimsCommand());
-        commands.put("printOne", new PrintOneClaimCommand());
+        commands.put("printClaim", new PrintOneClaimCommand());
         commands.put("add", new CreateClaimCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("update", new UpdateCommand());

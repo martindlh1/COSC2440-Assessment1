@@ -11,7 +11,7 @@ public class Customer {
     private String full_name;
     private InsuranceCard insurance_card;
     private CustomerType type;
-    private List<Claim> claims;
+    private List<Number> claims;
 
     public Customer(String full_name, CustomerType type) {
         this.id = IdGenerator.generate7digitId();
@@ -25,6 +25,18 @@ public class Customer {
         return id;
     }
 
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void addClaim(Claim claim) {
+        claims.add(claim.getId());
+    }
+
+    public void removeClaim(Claim claim) {
+        claims.remove(claim.getId());
+    }
+
     @Override
     public String toString() {
         return ">\tid: " + id +
@@ -32,6 +44,14 @@ public class Customer {
                 "\n\tinsurance_card: " + insurance_card +
                 "\n\ttype: " + type +
                 "\n\tclaims: " + claims;
+    }
+
+    public String toClaimString() {
+        return "\n\t\tid: " + id +
+                "\n\t\tfull_name: " + full_name +
+                "\n\t\tinsurance_card: " + insurance_card +
+                "\n\t\ttype: " + type +
+                "\n\t\tclaims: " + claims;
     }
 
     public String toJson() {

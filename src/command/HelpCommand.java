@@ -18,7 +18,7 @@ public class HelpCommand implements Command {
                 \texit\t\t\t\t\t\t\texit the program
                 \tprintCustomers\t\t\t\t\tdisplay the customers list
                 \tprintClaims\t\t\t\t\t\tdisplay the claims list
-                \tprintOneClaim\tid:int\t\t\tdisplay one claim (find by id)
+                \tprintClaim\tid:int\t\t\tdisplay one claim (find by id)
                 \tadd\t\t\t\tamount:int\t\tcreate a new claim
                 \tdelete\t\t\tid:int\t\t\tdelete one claim (find by id)
                 \tupdate\t\t\tid:int ...\t\tupdate one claim (find by id)
