@@ -1,4 +1,7 @@
 import helper.Printer;
+import model.Customer;
+import model.CustomerType;
+import repository.CustomerRepository;
 
 import java.util.*;
 

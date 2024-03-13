@@ -1,8 +1,5 @@
 import command.*;
 import helper.Printer;
-import model.Claim;
-import model.Customer;
-import repository.ClaimRepository;
 
 import java.util.*;
 
@@ -13,8 +10,9 @@ public class Manager {
         commands = new HashMap<>();
         commands.put("exit", new ExitCommand());
         commands.put("help", new HelpCommand());
-        commands.put("print", new PrintCommand());
-        commands.put("printOne", new PrintOneCommand());
+        commands.put("printCustomers", new PrintCustomersCommand());
+        commands.put("printClaims", new PrintClaimsCommand());
+        commands.put("printOne", new PrintOneClaimCommand());
         commands.put("add", new CreateClaimCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("update", new UpdateCommand());

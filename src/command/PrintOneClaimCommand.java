@@ -4,12 +4,12 @@ import helper.Printer;
 import model.Claim;
 import repository.ClaimRepository;
 
-public class PrintOneCommand implements Command {
+public class PrintOneClaimCommand implements Command {
     private final ClaimRepository claimRepository = ClaimRepository.getInstance();
 
     @Override
     public void help() {
-        Printer.hint("The 'printOne' command display one claim found by it's id");
+        Printer.hint("The 'printOneClaim' command display one claim found by it's id");
         Printer.hint("USAGE:\n\tprint id:integer");
     }
 
@@ -28,7 +28,7 @@ public class PrintOneCommand implements Command {
     @Override
     public boolean verifyParams(String[] params) {
         if (params.length < 1) {
-            Printer.error("Command 'printOne' take 1 parameter, type 'printOne --h' to get more information");
+            Printer.error("Command 'printOneClaim' take 1 parameter, type 'printOneClaim --h' to get more information");
             return false;
         }
         try {

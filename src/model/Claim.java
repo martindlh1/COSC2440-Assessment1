@@ -26,6 +26,10 @@ public class Claim {
         return this.id;
     }
 
+    public void setAmount(Number amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
         return ">\tid: " + id +
@@ -35,10 +39,6 @@ public class Claim {
                 "\n\tdoc: " + Arrays.toString(doc) +
                 "\n\tamount: " + amount +
                 "\n\tbankInfo: " + bankInfo;
-    }
-
-    public void setAmount(Number amount) {
-        this.amount = amount;
     }
 
     public String toJson() {

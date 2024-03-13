@@ -2,9 +2,11 @@ package command;
 
 import helper.Printer;
 import repository.ClaimRepository;
+import repository.CustomerRepository;
 
 public class ExitCommand implements Command {
     private final ClaimRepository claimRepository = ClaimRepository.getInstance();
+    private final CustomerRepository customerRepository = CustomerRepository.getInstance();
 
     @Override
     public void help() {
@@ -15,6 +17,7 @@ public class ExitCommand implements Command {
     @Override
     public Boolean exec(String[] params) {
         claimRepository.save();
+        customerRepository.save();
         Printer.result("Data successfully save, goodbye !");
         return false;
     }

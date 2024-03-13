@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ClaimRepository implements ClaimProcessManager {
+public class ClaimRepository implements ProcessManager<Claim> {
 
     private final List<Claim> claims;
     private static final ClaimRepository instance = new ClaimRepository();

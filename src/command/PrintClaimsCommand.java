@@ -3,12 +3,12 @@ import helper.Printer;
 import model.Claim;
 import repository.ClaimRepository;
 
-public class PrintCommand implements Command {
+public class PrintClaimsCommand implements Command {
     private final ClaimRepository claimRepository = ClaimRepository.getInstance();
 
     @Override
     public void help() {
-        Printer.hint("The 'print' command display a the claims list");
+        Printer.hint("The 'printClaims' command display a the claims list");
         Printer.hint("USAGE:\n\tprint");
     }
 
