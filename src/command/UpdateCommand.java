@@ -88,7 +88,7 @@ public class UpdateCommand implements Command {
                         Printer.error("Option value for 'amount' must be an integer.");
                         return false;
                     }
-                case "insuredId":
+                case "insured":
                     try {
                         if (customerRepository.getOne(Integer.parseInt(value)) == null) {
                             Printer.error("Customer not found.");
