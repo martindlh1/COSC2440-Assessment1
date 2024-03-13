@@ -17,6 +17,7 @@ public class Manager {
         commands.put("printOne", new PrintOneCommand());
         commands.put("add", new CreateClaimCommand());
         commands.put("delete", new DeleteCommand());
+        commands.put("update", new UpdateCommand());
     }
 
     public Boolean exec(String command) {

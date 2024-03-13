@@ -20,6 +20,7 @@ public class HelpCommand implements Command {
                 \tprintOne\t\tid:int\t\t\tdisplay one claim (find by id)
                 \tadd\t\t\t\tamount:int\t\tcreate a new claim
                 \tdelete\t\t\tid:int\t\t\tdelete one claim (find by id)
+                \tupdate\t\t\tid:int ...\t\tupdate one claim (find by id)
                 Add --h flags after a command to get more information""");
         return true;
     }

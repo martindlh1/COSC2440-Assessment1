@@ -37,6 +37,10 @@ public class Claim {
                 "\n\tbankInfo: " + bankInfo;
     }
 
+    public void setAmount(Number amount) {
+        this.amount = amount;
+    }
+
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this) + "\n";
