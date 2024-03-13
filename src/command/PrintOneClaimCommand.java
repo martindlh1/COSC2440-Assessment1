@@ -10,7 +10,7 @@ public class PrintOneClaimCommand implements Command {
     @Override
     public void help() {
         Printer.hint("The 'printClaim' command display one claim found by it's id");
-        Printer.hint("USAGE:\n\tprint id:integer");
+        Printer.hint("USAGE:\n\tprintClaim id:integer");
     }
 
     @Override
@@ -18,7 +18,7 @@ public class PrintOneClaimCommand implements Command {
         Number id = Integer.parseInt(params[0]);
         Claim claim = claimRepository.getOne(id);
         if (claim == null) {
-            Printer.error("Claim not found");
+            Printer.error("Claim " + id + " not found");
             return true;
         }
         Printer.result(claim.toDetailedString());

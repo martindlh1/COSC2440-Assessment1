@@ -1,8 +1,11 @@
 import helper.Printer;
 import model.Customer;
 import model.CustomerType;
+import model.InsuranceCard;
 import repository.CustomerRepository;
+import repository.InsuranceCardRepository;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {

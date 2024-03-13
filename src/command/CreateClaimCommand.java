@@ -3,6 +3,7 @@ package command;
 import helper.Printer;
 import model.Claim;
 import model.Customer;
+import model.CustomerType;
 import repository.ClaimRepository;
 import repository.CustomerRepository;
 
@@ -27,7 +28,7 @@ public class CreateClaimCommand implements Command {
             Printer.error("Customer " + customerId + " not found.");
             return true;
         }
-        Claim claim = new Claim(new Date(), customerId, new Date(), null, amount, null);
+        Claim claim = new Claim(customer, new Date(), null, amount, null);
         customer.addClaim(claim);
         customerRepository.update(customer);
         claimRepository.add(claim);
@@ -48,7 +49,16 @@ public class CreateClaimCommand implements Command {
             return false;
         }
         try {
-            Integer.parseInt(params[1]);
+            Number id = Integer.parseInt(params[1]);
+            Customer customer = customerRepository.getOne(id);
+            if (customer == null) {
+                Printer.error("Customer " + id + " not found.");
+                return false;
+            }
+            if (customer.getType() != CustomerType.DEPENDENT) {
+                Printer.error("Customer " + id + " is a policy owner not a dependent.");
+                return false;
+            }
         } catch (NumberFormatException e) {
             Printer.error("Parameter 'customerId' must be an integer, type 'add --h' to get more information");
             return false;

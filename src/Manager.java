@@ -11,6 +11,7 @@ public class Manager {
         commands.put("exit", new ExitCommand());
         commands.put("help", new HelpCommand());
         commands.put("printCustomers", new PrintCustomersCommand());
+        commands.put("printCustomer", new PrintOneCustomerCommand());
         commands.put("printClaims", new PrintClaimsCommand());
         commands.put("printClaim", new PrintOneClaimCommand());
         commands.put("add", new CreateClaimCommand());
@@ -25,6 +26,12 @@ public class Manager {
         String[] params = new String[parsedCommand.length - 1];
         System.arraycopy(parsedCommand, 1, params, 0, parsedCommand.length - 1);
 
+        // Display error message in case of unknown command
+        if (!commands.containsKey(commandName)) {
+            Printer.error("Unknown command, type 'help' to see available command");
+            return true;
+        }
+
         try {
             // Check for --h flag to display information on the command
             Command cmd = commands.get(commandName);
@@ -38,10 +45,9 @@ public class Manager {
                 return cmd.exec(params);
 
             return true;
-        } catch (NullPointerException e) {
-            // Display error message in case of unknown command
-            Printer.error("Unknown command, type 'help' to see available command");
-            return true;
+        } catch (Exception e) {
+            Printer.error(e.toString());
+            throw e;
         }
     }
 }

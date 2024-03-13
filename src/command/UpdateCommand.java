@@ -3,6 +3,7 @@ package command;
 import helper.Printer;
 import model.Claim;
 import model.Customer;
+import model.CustomerType;
 import repository.ClaimRepository;
 import repository.CustomerRepository;
 
@@ -90,8 +91,14 @@ public class UpdateCommand implements Command {
                     }
                 case "insured":
                     try {
-                        if (customerRepository.getOne(Integer.parseInt(value)) == null) {
-                            Printer.error("Customer not found.");
+                        Number id = Integer.parseInt(value);
+                        Customer customer = customerRepository.getOne(id);
+                        if (customer == null) {
+                            Printer.error("Customer " + id + " not found.");
+                            return false;
+                        }
+                        if (customer.getType() != CustomerType.DEPENDENT) {
+                            Printer.error("Customer " + id + " is a policy owner not a dependent.");
                             return false;
                         }
                         continue;
