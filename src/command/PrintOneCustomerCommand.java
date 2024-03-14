@@ -9,7 +9,7 @@ public class PrintOneCustomerCommand implements Command {
 
     @Override
     public void help() {
-        Printer.hint("The 'printCustomer' command display one customer found by it's id");
+        Printer.hint("The 'printCustomer' command display one detailed customer found by it's id");
         Printer.hint("USAGE:\n\tprintCustomer id:integer");
     }
 
@@ -18,7 +18,7 @@ public class PrintOneCustomerCommand implements Command {
         Number id = Integer.parseInt(params[0]);
         Customer customer = customerRepository.getOne(id);
         if (customer == null) {
-            Printer.error("Customer " + id + " not found");
+            Printer.error("Customer " + id + " not found.");
             return true;
         }
         Printer.result(customer.toDetailedString());
@@ -28,13 +28,13 @@ public class PrintOneCustomerCommand implements Command {
     @Override
     public boolean verifyParams(String[] params) {
         if (params.length < 1) {
-            Printer.error("Command 'printCustomer' take 1 parameter, type 'printCustomer --h' to get more information");
+            Printer.error("Command 'printCustomer' take 1 parameter, type 'printCustomer --h' to get more information.");
             return false;
         }
         try {
             Integer.parseInt(params[0]);
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'id' must be an integer");
+            Printer.error("Parameter 'id' must be an integer.");
             return false;
         }
         return true;

@@ -46,8 +46,9 @@ public class Manager {
 
             return true;
         } catch (Exception e) {
-            Printer.error(e.toString());
-            throw e;
+            Printer.error("ERROR: " + e.getMessage());
+            Printer.error("Shutting down program...");
+            return false;
         }
     }
 }

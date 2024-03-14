@@ -39,13 +39,13 @@ public class CreateClaimCommand implements Command {
     @Override
     public boolean verifyParams(String[] params) {
         if (params.length < 2) {
-            Printer.error("Command 'add' take 2 parameter, type 'add --h' to get more information");
+            Printer.error("Command 'add' take 2 parameter, type 'add --h' to get more information.");
             return false;
         }
         try {
             Integer.parseInt(params[0]);
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'amount' must be an integer, type 'add --h' to get more information");
+            Printer.error("Parameter 'amount' must be an integer, type 'add --h' to get more information.");
             return false;
         }
         try {
@@ -60,7 +60,7 @@ public class CreateClaimCommand implements Command {
                 return false;
             }
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'customerId' must be an integer, type 'add --h' to get more information");
+            Printer.error("Parameter 'customerId' must be an integer, type 'add --h' to get more information.");
             return false;
         }
         return true;

@@ -17,11 +17,12 @@ public class HelpCommand implements Command {
                 \thelp\t\t\t\t\t\t\tdisplay available commands
                 \texit\t\t\t\t\t\t\texit the program
                 \tprintCustomers\t\t\t\t\tdisplay the customers list
+                \tprintCustomer\tid:int\t\t\tdisplay one detailed customer
                 \tprintClaims\t\t\t\t\t\tdisplay the claims list
-                \tprintClaim\t\tid:int\t\t\tdisplay one claim (find by id)
+                \tprintClaim\t\tid:int\t\t\tdisplay one detailed claim
                 \tadd\t\t\t\t[...]\t\t\tcreate a new claim
-                \tdelete\t\t\tid:int\t\t\tdelete one claim (find by id)
-                \tupdate\t\t\tid:int [...]\tupdate one claim (find by id)
+                \tdelete\t\t\tid:int\t\t\tdelete one claim
+                \tupdate\t\t\tid:int [...]\tupdate one claim
                 [...] means multiple argument/options
                 Add --h flags after a command to get more information""");
         return true;

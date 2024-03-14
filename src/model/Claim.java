@@ -20,21 +20,11 @@ public class Claim {
         this.date = new Date();
         this.insured = insured.getId();
         this.exam_date = exam_date;
-        this.card_number = null;
+        this.card_number = insured.getInsurance_card();
         this.doc = doc;
         this.amount = amount;
         this.bankInfo = bankInfo;
     }
-
-//    public Claim(Date date, Number insured, Date exam_date, String[] doc, Number amount, BankInfo bankInfo) {
-//        this.id = IdGenerator.generate10digitId();
-//        this.date = date;
-//        this.insured = insured;
-//        this.exam_date = exam_date;
-//        this.doc = doc;
-//        this.amount = amount;
-//        this.bankInfo = bankInfo;
-//    }
 
     public Number getId() {
         return this.id;
@@ -52,11 +42,16 @@ public class Claim {
         this.insured = insured;
     }
 
+    public void setCard_number(Number card_number) {
+        this.card_number = card_number;
+    }
+
     @Override
     public String toString() {
         return ">\tid: " + id +
                 "\n\tdate: " + date +
                 "\n\tinsured: " + insured +
+                "\n\tcard_number: " + card_number +
                 "\n\texam_date: " + exam_date +
                 "\n\tdoc: " + Arrays.toString(doc) +
                 "\n\tamount: " + amount +
@@ -64,19 +59,21 @@ public class Claim {
     }
 
     public String toCustomerString() {
-        return "\n\t\tid: " + id +
+        return "\n\t>\tid: " + id +
                 "\n\t\tdate: " + date +
                 "\n\t\tinsured: " + insured +
+                "\n\t\tcard_number: " + card_number +
                 "\n\t\texam_date: " + exam_date +
                 "\n\t\tdoc: " + Arrays.toString(doc) +
                 "\n\t\tamount: " + amount +
-                "\n\t\tbankInfo: " + bankInfo + "\n";
+                "\n\t\tbankInfo: " + bankInfo;
     }
 
     public String toDetailedString() {
         return ">\tid: " + id +
                 "\n\tdate: " + date +
                 "\n\tinsured: " + CustomerRepository.getInstance().getOne(insured).toClaimString() +
+                "\n\tcard_number: " + card_number +
                 "\n\texam_date: " + exam_date +
                 "\n\tdoc: " + Arrays.toString(doc) +
                 "\n\tamount: " + amount +

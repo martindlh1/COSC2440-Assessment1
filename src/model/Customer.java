@@ -65,7 +65,7 @@ public class Customer {
             Claim claim = ClaimRepository.getInstance().getOne(claimId);
             detailedClaims.add(claim.toCustomerString());
         }
-        detailedClaims.add("\t\t");
+        detailedClaims.add("\n\t");
         return ">\tid: " + id +
                 "\n\tfull_name: " + full_name +
                 "\n\tinsurance_card: " + insurance_card +

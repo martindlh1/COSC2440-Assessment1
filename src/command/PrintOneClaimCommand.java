@@ -9,7 +9,7 @@ public class PrintOneClaimCommand implements Command {
 
     @Override
     public void help() {
-        Printer.hint("The 'printClaim' command display one claim found by it's id");
+        Printer.hint("The 'printClaim' command display one detailed claim found by it's id");
         Printer.hint("USAGE:\n\tprintClaim id:integer");
     }
 
@@ -18,7 +18,7 @@ public class PrintOneClaimCommand implements Command {
         Number id = Integer.parseInt(params[0]);
         Claim claim = claimRepository.getOne(id);
         if (claim == null) {
-            Printer.error("Claim " + id + " not found");
+            Printer.error("Claim " + id + " not found.");
             return true;
         }
         Printer.result(claim.toDetailedString());
@@ -28,13 +28,13 @@ public class PrintOneClaimCommand implements Command {
     @Override
     public boolean verifyParams(String[] params) {
         if (params.length < 1) {
-            Printer.error("Command 'printClaim' take 1 parameter, type 'printClaim --h' to get more information");
+            Printer.error("Command 'printClaim' take 1 parameter, type 'printClaim --h' to get more information.");
             return false;
         }
         try {
             Integer.parseInt(params[0]);
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'id' must be an integer");
+            Printer.error("Parameter 'id' must be an integer.");
             return false;
         }
         return true;

@@ -32,7 +32,7 @@ public class UpdateCommand implements Command {
             return true;
         }
         if (params.length == 1) {
-            Printer.result("Nothing to update");
+            Printer.result("Nothing to update.");
             return true;
         }
         for (int i = 1; i < params.length; i+=1) {
@@ -49,6 +49,7 @@ public class UpdateCommand implements Command {
                     customerRepository.update(oldInsured);
                     customerRepository.update(newInsured);
                     claim.setInsured(Integer.parseInt(value));
+                    claim.setCard_number(newInsured.getInsurance_card());
             }
         }
         claimRepository.update(claim);

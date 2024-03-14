@@ -10,7 +10,7 @@ public class PrintCustomersCommand implements Command {
 
     public void help() {
         Printer.hint("The 'printCustomers' command display a the customers list");
-        Printer.hint("USAGE:\n\tprint");
+        Printer.hint("USAGE:\n\tprintCustomers");
     }
 
     @Override

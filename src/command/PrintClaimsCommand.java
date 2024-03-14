@@ -8,8 +8,8 @@ public class PrintClaimsCommand implements Command {
 
     @Override
     public void help() {
-        Printer.hint("The 'printClaims' command display a the claims list");
-        Printer.hint("USAGE:\n\tprint");
+        Printer.hint("The 'printClaims' command display the claims list");
+        Printer.hint("USAGE:\n\tprintClaims");
     }
 
     @Override
