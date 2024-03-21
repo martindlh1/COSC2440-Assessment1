@@ -1,3 +1,4 @@
+import helper.DataCreator;
 import helper.Printer;
 import model.Customer;
 import model.CustomerType;
@@ -18,7 +19,7 @@ public class Main {
         String command;
 
         //Intercept program stop to properly save data
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> manager.exec("exit")));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> manager.shutdown()));
 
         welcome();
         do {

@@ -22,6 +22,21 @@ public class InsuranceCard {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return ">\tid: " + id +
+                "\n\tholder: " + holder +
+                "\n\tpolicy_owner: " + policy_owner +
+                "\n\texpiration: " + expiration;
+    }
+
+    public String toCustomerString() {
+        return "\n\t\tid: " + id +
+                "\n\t\tholder: " + holder +
+                "\n\t\tpolicy_owner: " + policy_owner +
+                "\n\t\texpiration: " + expiration;
+    }
+
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this) + "\n";

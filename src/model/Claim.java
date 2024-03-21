@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Claim {
     private final Number id;
-    private Date date;
+    private final Date date;
     private Number card_number;
     private Number insured;
     private Date exam_date;
@@ -46,6 +46,18 @@ public class Claim {
         this.card_number = card_number;
     }
 
+    public void setExam_date(Date exam_date) {
+        this.exam_date = exam_date;
+    }
+
+    public BankInfo getBankInfo() {
+        return bankInfo;
+    }
+
+    public void setBankInfo(BankInfo bankInfo) {
+        this.bankInfo = bankInfo;
+    }
+
     @Override
     public String toString() {
         return ">\tid: " + id +
@@ -55,7 +67,7 @@ public class Claim {
                 "\n\texam_date: " + exam_date +
                 "\n\tdoc: " + Arrays.toString(doc) +
                 "\n\tamount: " + amount +
-                "\n\tbankInfo: " + bankInfo;
+                "\n\tbankInfo: " + (bankInfo == null ? "null" : bankInfo.getNumber());
     }
 
     public String toCustomerString() {
@@ -66,7 +78,7 @@ public class Claim {
                 "\n\t\texam_date: " + exam_date +
                 "\n\t\tdoc: " + Arrays.toString(doc) +
                 "\n\t\tamount: " + amount +
-                "\n\t\tbankInfo: " + bankInfo;
+                "\n\t\tbankInfo: " + bankInfo.getNumber();
     }
 
     public String toDetailedString() {
@@ -77,7 +89,10 @@ public class Claim {
                 "\n\texam_date: " + exam_date +
                 "\n\tdoc: " + Arrays.toString(doc) +
                 "\n\tamount: " + amount +
-                "\n\tbankInfo: " + bankInfo;
+                "\n\tbankInfo:" + (bankInfo == null ? "null" :
+                "\n\t\t" + bankInfo.getBank() +
+                "\n\t\t" + bankInfo.getName() +
+                "\n\t\t" + bankInfo.getNumber());
     }
 
     public String toJson() {

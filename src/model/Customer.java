@@ -3,6 +3,7 @@ package model;
 import com.google.gson.Gson;
 import helper.IdGenerator;
 import repository.ClaimRepository;
+import repository.InsuranceCardRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,10 @@ public class Customer {
         return insurance_card;
     }
 
+    public void setInsurance_card(Number insurance_card) {
+        this.insurance_card = insurance_card;
+    }
+
     public CustomerType getType() {
         return type;
     }
@@ -65,10 +70,11 @@ public class Customer {
             Claim claim = ClaimRepository.getInstance().getOne(claimId);
             detailedClaims.add(claim.toCustomerString());
         }
-        detailedClaims.add("\n\t");
+        if (!detailedClaims.isEmpty())
+            detailedClaims.add("\n\t");
         return ">\tid: " + id +
                 "\n\tfull_name: " + full_name +
-                "\n\tinsurance_card: " + insurance_card +
+                "\n\tinsurance_card: " + InsuranceCardRepository.getInstance().getOne(insurance_card).toCustomerString() +
                 "\n\ttype: " + type +
                 "\n\tclaims: " + detailedClaims;
     }

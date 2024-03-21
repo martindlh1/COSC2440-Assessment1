@@ -1,16 +1,17 @@
 package command;
 
 import helper.Printer;
+import model.BankInfo;
 import model.Claim;
 import model.Customer;
 import model.CustomerType;
 import repository.ClaimRepository;
 import repository.CustomerRepository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class UpdateCommand implements Command {
     private final ClaimRepository claimRepository = ClaimRepository.getInstance();
@@ -20,7 +21,7 @@ public class UpdateCommand implements Command {
     public void help() {
         Printer.hint("The 'update' command update the selected claim");
         Printer.hint("USAGE:\n\tupdate id:integer option=option_value");
-        Printer.hint("OPTIONS:\n\tamount:integer\n\tinsured:integer");
+        Printer.hint("OPTIONS:\n\tamount:integer\n\tinsured:integer\n\texam_date:mm/dd/yyyy\n\tbank_name:string\n\tcard_holder:string\n\tcard_number");
     }
 
     @Override
@@ -31,6 +32,9 @@ public class UpdateCommand implements Command {
             Printer.error("Claim " + id + " not found.");
             return true;
         }
+        BankInfo bankInfo = claim.getBankInfo();
+        if (bankInfo == null)
+            bankInfo = new BankInfo();
         if (params.length == 1) {
             Printer.result("Nothing to update.");
             return true;
@@ -50,8 +54,26 @@ public class UpdateCommand implements Command {
                     customerRepository.update(newInsured);
                     claim.setInsured(Integer.parseInt(value));
                     claim.setCard_number(newInsured.getInsurance_card());
+                case "exam_date":
+                    try {
+                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                        Date date = df.parse(value);
+                        claim.setExam_date(date);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                case "bank_name":
+                    bankInfo.setBank(value);
+                    break;
+                case "card_holder":
+                    bankInfo.setName(value);
+                    break;
+                case "card_number":
+                    bankInfo.setNumber(Integer.parseInt(value));
+                    break;
             }
         }
+        claim.setBankInfo(bankInfo);
         claimRepository.update(claim);
         Printer.result("Claim successfully updated !");
         return true;
@@ -107,6 +129,26 @@ public class UpdateCommand implements Command {
                         Printer.error("Option value for 'insured' must be an integer.");
                         return false;
                     }
+                case "exam_date":
+                    try {
+                        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                        Date date = df.parse(value);
+                        continue;
+                    } catch (ParseException e) {
+                        Printer.error("Option value for 'exam_date' must follow the format 'mm/dd/yyyy'.");
+                        return false;
+                    }
+                case "card_number":
+                    try {
+                        Integer.parseInt(value);
+                    } catch (NumberFormatException e) {
+                        Printer.error("Option value for 'card_number' must be an integer.");
+                        return false;
+                    }
+                case "bank_name":
+                    continue;
+                case "card_holder":
+                    continue;
                 default:
                     Printer.error("Unknown parameter, type 'update --h' top get more information.");
                     return false;

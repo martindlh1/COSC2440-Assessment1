@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Manager {
     private final Map<String, Command> commands;
+    private boolean isExit = false;
 
     public Manager() {
         commands = new HashMap<>();
@@ -17,6 +18,11 @@ public class Manager {
         commands.put("add", new CreateClaimCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("update", new UpdateCommand());
+    }
+
+    public void shutdown() {
+        if (!isExit)
+            commands.get("exit").exec(null);
     }
 
     public Boolean exec(String command) {
@@ -40,13 +46,17 @@ public class Manager {
                 return true;
             }
 
+            //Check if command is 'exit' to avoid double save of data
+            if (commandName.equals("exit"))
+                isExit = true;
+
             // Check parameter before execute command
             if (cmd.verifyParams(params))
                 return cmd.exec(params);
 
             return true;
         } catch (Exception e) {
-            Printer.error("ERROR: " + e.getMessage());
+            Printer.error("ERROR: " + e);
             Printer.error("Shutting down program...");
             return false;
         }
