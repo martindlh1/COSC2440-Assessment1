@@ -1,6 +1,8 @@
-package repository;
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
 
-import model.Claim;
+package repository;
 
 import java.util.List;
 
@@ -14,4 +16,6 @@ public interface ProcessManager<T> {
     List<T> getAll();
 
     T getOne(Number id);
+
+    void save();
 }

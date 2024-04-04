@@ -1,19 +1,16 @@
-import helper.DataCreator;
-import helper.Printer;
-import model.Customer;
-import model.CustomerType;
-import model.InsuranceCard;
-import repository.CustomerRepository;
-import repository.InsuranceCardRepository;
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
 
-import java.time.LocalDate;
-import java.util.*;
+import helper.Printer;
+import java.util.Scanner;
 
 public class Main {
 
     static Manager manager;
 
     public static void main(String[] args) {
+        //Create Scanner & Manager
         Scanner in = new Scanner(System.in);
         manager = new Manager();
         String command;
@@ -21,7 +18,10 @@ public class Main {
         //Intercept program stop to properly save data
         Runtime.getRuntime().addShutdownHook(new Thread(() -> manager.shutdown()));
 
+        //Quick function to display welcome information
         welcome();
+
+        //Program loop
         do {
             command = in.nextLine();
         } while (manager.exec(command));

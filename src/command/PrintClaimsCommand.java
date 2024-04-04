@@ -1,4 +1,9 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package command;
+
 import helper.Printer;
 import model.Claim;
 import repository.ClaimRepository;

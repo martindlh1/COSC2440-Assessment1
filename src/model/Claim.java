@@ -1,9 +1,15 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package model;
+
 import com.google.gson.Gson;
 import helper.IdGenerator;
 import repository.CustomerRepository;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
 
 public class Claim {
     private final Number id;

@@ -1,3 +1,7 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package model;
 
 import com.google.gson.Gson;

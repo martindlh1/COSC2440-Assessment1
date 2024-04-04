@@ -1,3 +1,7 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package repository;
 
 import com.google.gson.Gson;
@@ -65,6 +69,7 @@ public class ClaimRepository implements ProcessManager<Claim> {
         return null;
     }
 
+    @Override
     public void save() {
         try {
             FileWriter myWriter = new FileWriter("db/claim.json");

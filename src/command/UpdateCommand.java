@@ -1,3 +1,7 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package command;
 
 import helper.Printer;
@@ -11,7 +15,7 @@ import repository.CustomerRepository;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 
 public class UpdateCommand implements Command {
     private final ClaimRepository claimRepository = ClaimRepository.getInstance();

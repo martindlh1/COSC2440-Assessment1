@@ -1,7 +1,10 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package repository;
 
 import com.google.gson.Gson;
-import model.Customer;
 import model.InsuranceCard;
 
 import java.io.File;
@@ -64,6 +67,7 @@ public class InsuranceCardRepository implements ProcessManager<InsuranceCard> {
         return null;
     }
 
+    @Override
     public void save() {
         try {
             FileWriter myWriter = new FileWriter("db/card.json");

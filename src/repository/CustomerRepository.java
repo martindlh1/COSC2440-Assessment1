@@ -1,7 +1,10 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 package repository;
 
 import com.google.gson.Gson;
-import model.Claim;
 import model.Customer;
 
 import java.io.File;
@@ -66,6 +69,7 @@ public class CustomerRepository implements ProcessManager<Customer> {
         return null;
     }
 
+    @Override
     public void save() {
         try {
             FileWriter myWriter = new FileWriter("db/customer.json");

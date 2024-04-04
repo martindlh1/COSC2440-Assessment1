@@ -1,13 +1,19 @@
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
+
 import command.*;
 import helper.Printer;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Manager {
     private final Map<String, Command> commands;
     private boolean isExit = false;
 
     public Manager() {
+        // Assign a command to each instruction
         commands = new HashMap<>();
         commands.put("exit", new ExitCommand());
         commands.put("help", new HelpCommand());
@@ -21,6 +27,7 @@ public class Manager {
     }
 
     public void shutdown() {
+        //Properly save data on shutdown
         if (!isExit)
             commands.get("exit").exec(null);
     }

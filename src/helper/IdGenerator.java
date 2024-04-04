@@ -1,6 +1,8 @@
-package helper;
+/**
+ * @author <Martin Delahousse - s4034308>
+ */
 
-import java.util.Random;
+package helper;
 
 public class IdGenerator {
 
