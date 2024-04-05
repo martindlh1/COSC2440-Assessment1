@@ -24,13 +24,13 @@ public class CreateClaimCommand implements Command {
     @Override
     public void help() {
         Printer.hint("The 'add' command create a new claim");
-        Printer.hint("USAGE:\n\tadd customerId:integer amount:integer exam_date:mm/dd/yyyy bank_info:bankName/holderName/cardNumber");
+        Printer.hint("USAGE:\n\tadd customerId:integer amount:integer exam_date:mm/dd/yyyy bank_info:bankName/holderName/cardNumber documents:doc1.pdf/doc2.pdf/etc..");
     }
 
     @Override
     public Boolean exec(String[] params) {
-        Number amount = Integer.parseInt(params[1]);
-        Number customerId = Integer.parseInt(params[0]);
+        Number amount = Long.parseLong(params[1]);
+        Number customerId = Long.parseLong(params[0]);
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         Date date;
         try {
@@ -43,9 +43,18 @@ public class CreateClaimCommand implements Command {
             Printer.error("Customer " + customerId + " not found.");
             return true;
         }
-        String[] bankInfoParams = params[2].split("/");
-        BankInfo bankInfo = new BankInfo(bankInfoParams[0], bankInfoParams[1], Integer.parseInt(bankInfoParams[2]));
+        String[] bankInfoParams = params[3].split("/");
+        BankInfo bankInfo = new BankInfo(bankInfoParams[0], bankInfoParams[1], Long.parseLong(bankInfoParams[2]));
         Claim claim = new Claim(customer, date, null, amount, bankInfo);
+        String[] formattedDocs = null;
+        if (params.length > 4) {
+            String[] docs = params[4].split("/");
+            formattedDocs = new String[docs.length];
+            for (int i = 0; i < docs.length; i++) {
+                formattedDocs[i] =  claim.getId() + "_" + claim.getCard_number() + "_" + docs[i];
+            }
+        }
+        claim.setDoc(formattedDocs);
         customer.addClaim(claim);
         customerRepository.update(customer);
         claimRepository.add(claim);
@@ -56,12 +65,12 @@ public class CreateClaimCommand implements Command {
     @Override
     public boolean verifyParams(String[] params) {
         if (params.length < 4) {
-            Printer.error("Command 'add' take 4 parameter, type 'add --h' to get more information.");
+            Printer.error("Command 'add' take 4 or 5 parameter, type 'add --h' to get more information.");
             return false;
         }
 
         try {
-            Number id = Integer.parseInt(params[0]);
+            Number id = Long.parseLong(params[0]);
             Customer customer = customerRepository.getOne(id);
             if (customer == null) {
                 Printer.error("Customer " + id + " not found.");
@@ -72,13 +81,13 @@ public class CreateClaimCommand implements Command {
                 return false;
             }
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'customerId' must be an integer, type 'add --h' to get more information.");
+            Printer.error("Parameter 'customerId' must be a number, type 'add --h' to get more information.");
             return false;
         }
         try {
-            Integer.parseInt(params[1]);
+            Long.parseLong(params[1]);
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'amount' must be an integer, type 'add --h' to get more information.");
+            Printer.error("Parameter 'amount' must be a number, type 'add --h' to get more information.");
             return false;
         }
         try {
@@ -94,10 +103,19 @@ public class CreateClaimCommand implements Command {
                 Printer.error("Parameter 'bank_info' must follow the format 'bankName/holderName/cardNumber', type 'add --h' to get more information.");
                 return false;
             }
-            Integer.parseInt(bankInfo[2]);
+            Long.parseLong(bankInfo[2]);
         } catch (NumberFormatException e) {
-            Printer.error("3th part of parameter 'bank_info' (cardNumber) must be an integer, type 'add --h' to get more information.");
+            Printer.error("3th part of parameter 'bank_info' (cardNumber) must be a number, type 'add --h' to get more information.");
             return false;
+        }
+        if (params.length > 4) {
+            String[] docs = params[4].split("/");
+            for (String doc : docs) {
+                if (!doc.contains(".pdf")) {
+                    Printer.error("Documents must be pdf, type 'add --h' to get more information.");
+                    return false;
+                }
+            }
         }
         return true;
     }

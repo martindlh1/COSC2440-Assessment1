@@ -48,6 +48,10 @@ public class Claim {
         this.insured = insured;
     }
 
+    public Number getCard_number() {
+        return card_number;
+    }
+
     public void setCard_number(Number card_number) {
         this.card_number = card_number;
     }
@@ -62,6 +66,10 @@ public class Claim {
 
     public void setBankInfo(BankInfo bankInfo) {
         this.bankInfo = bankInfo;
+    }
+
+    public void setDoc(String[] doc) {
+        this.doc = doc;
     }
 
     @Override

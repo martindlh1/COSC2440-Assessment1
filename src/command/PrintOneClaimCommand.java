@@ -19,7 +19,7 @@ public class PrintOneClaimCommand implements Command {
 
     @Override
     public Boolean exec(String[] params) {
-        Number id = Integer.parseInt(params[0]);
+        Number id = Long.parseLong(params[0]);
         Claim claim = claimRepository.getOne(id);
         if (claim == null) {
             Printer.error("Claim " + id + " not found.");
@@ -36,9 +36,9 @@ public class PrintOneClaimCommand implements Command {
             return false;
         }
         try {
-            Integer.parseInt(params[0]);
+            Long.parseLong(params[0]);
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'id' must be an integer.");
+            Printer.error("Parameter 'id' must be a number.");
             return false;
         }
         return true;

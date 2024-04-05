@@ -30,7 +30,7 @@ public class UpdateCommand implements Command {
 
     @Override
     public Boolean exec(String[] params) {
-        Number id = Integer.parseInt(params[0]);
+        Number id = Long.parseLong(params[0]);
         Claim claim = claimRepository.getOne(id);
         if (claim == null) {
             Printer.error("Claim " + id + " not found.");
@@ -48,15 +48,15 @@ public class UpdateCommand implements Command {
             String value = params[i].split("=")[1];
             switch (param) {
                 case "amount":
-                    claim.setAmount(Integer.parseInt(value));
+                    claim.setAmount(Long.parseLong(value));
                 case "insured":
                     Customer oldInsured = customerRepository.getOne(claim.getInsured());
-                    Customer newInsured = customerRepository.getOne(Integer.parseInt(value));
+                    Customer newInsured = customerRepository.getOne(Long.parseLong(value));
                     oldInsured.removeClaim(claim);
                     newInsured.addClaim(claim);
                     customerRepository.update(oldInsured);
                     customerRepository.update(newInsured);
-                    claim.setInsured(Integer.parseInt(value));
+                    claim.setInsured(Long.parseLong(value));
                     claim.setCard_number(newInsured.getInsurance_card());
                 case "exam_date":
                     try {
@@ -73,7 +73,7 @@ public class UpdateCommand implements Command {
                     bankInfo.setName(value);
                     break;
                 case "card_number":
-                    bankInfo.setNumber(Integer.parseInt(value));
+                    bankInfo.setNumber(Long.parseLong(value));
                     break;
             }
         }
@@ -90,9 +90,9 @@ public class UpdateCommand implements Command {
             return false;
         }
         try {
-            Integer.parseInt(params[0]);
+            Long.parseLong(params[0]);
         } catch (NumberFormatException e) {
-            Printer.error("Parameter 'id' must be an integer.");
+            Printer.error("Parameter 'id' must be a number.");
             return false;
         }
         for (int i = 1; i < params.length; i+=1) {
@@ -110,15 +110,15 @@ public class UpdateCommand implements Command {
             switch (param) {
                 case "amount":
                     try {
-                        Integer.parseInt(value);
+                        Long.parseLong(value);
                         continue;
                     } catch (NumberFormatException e) {
-                        Printer.error("Option value for 'amount' must be an integer.");
+                        Printer.error("Option value for 'amount' must be a number.");
                         return false;
                     }
                 case "insured":
                     try {
-                        Number id = Integer.parseInt(value);
+                        Number id = Long.parseLong(value);
                         Customer customer = customerRepository.getOne(id);
                         if (customer == null) {
                             Printer.error("Customer " + id + " not found.");
@@ -130,7 +130,7 @@ public class UpdateCommand implements Command {
                         }
                         continue;
                     } catch (NumberFormatException e) {
-                        Printer.error("Option value for 'insured' must be an integer.");
+                        Printer.error("Option value for 'insured' must be a number.");
                         return false;
                     }
                 case "exam_date":
@@ -144,9 +144,9 @@ public class UpdateCommand implements Command {
                     }
                 case "card_number":
                     try {
-                        Integer.parseInt(value);
+                        Long.parseLong(value);
                     } catch (NumberFormatException e) {
-                        Printer.error("Option value for 'card_number' must be an integer.");
+                        Printer.error("Option value for 'card_number' must be a number.");
                         return false;
                     }
                 case "bank_name":

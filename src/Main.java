@@ -3,6 +3,7 @@
  */
 
 import helper.Printer;
+
 import java.util.Scanner;
 
 public class Main {
