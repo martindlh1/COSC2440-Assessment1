@@ -25,7 +25,7 @@ public class loginController {
             String password = userPassword.getText();
 
             if(ID.equals("admin") && password.equals("1234")) {
-                loadScene(event);
+                showMain(event);
             } else {
                 showAlert("Login Failed","Wrong ID or password entered");
             }
@@ -34,7 +34,7 @@ public class loginController {
         }
     }
 
-    private void loadScene(ActionEvent event) {
+    private void showMain(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXMLs/Main.fxml"));
             Parent root = loader.load();

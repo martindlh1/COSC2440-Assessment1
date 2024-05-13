@@ -38,59 +38,56 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="Actions">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Add" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                  <MenuItem mnemonicParsing="false" text="Update" />
-               </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Print">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Print one customer" />
-            <MenuItem mnemonicParsing="false" text="Print all customers" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Print one claim" />
-            <MenuItem mnemonicParsing="false" text="Print all claims" />
-          </items>
-        </Menu>
-            <Menu mnemonicParsing="false" text="Save">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save &amp; Exit" />
-              </items>
-            </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <Label layoutX="78.0" layoutY="115.0" text="Welcome to the Insurance Claim Management System" textFill="#bcbcbc">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="144.0" layoutY="164.0" text="Inspect 'Actions' menu for database access" textFill="#bcbcbc">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="143.0" layoutY="192.0" text="Inspect 'Print' menu for printing information" textFill="#bcbcbc">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="128.0" layoutY="222.0" text="Inspect 'Save' menu for saving the manipulation" textFill="#bcbcbc">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-  </children>
-</VBox>
+<AnchorPane id="mainPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menuController">
+    <children>
+        <Label layoutX="58.0" layoutY="144.0" text="Welcome to the Insurance Claim Management System" textFill="#919191">
+            <font>
+                <Font name="Arial" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="148.0" layoutY="193.0" text="Inspect 'Actions' menu for database access" textFill="#919191">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="150.0" layoutY="219.0" text="Inspect 'Print' menu for printing information" textFill="#919191">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="130.0" layoutY="246.0" text="Inspect 'Save' menu for saving the manipulation" textFill="#919191">
+            <font>
+                <Font name="Arial" size="16.0" />
+            </font>
+        </Label>
+        <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="600.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Actions">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Add" onAction="#addBtnClicked" />
+                        <MenuItem mnemonicParsing="false" text="Delete" onAction="#deleteBtnClicked" />
+                        <MenuItem mnemonicParsing="false" text="Update" onAction="#updateBtnClicked" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Print">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Print one customer" onAction="#printOneCustomer" />
+                        <MenuItem mnemonicParsing="false" text="Print all customers" onAction="#printAllCustomers" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Print one claim" onAction="#printOneClaim" />
+                        <MenuItem mnemonicParsing="false" text="Print all claims" onAction="#printAllClaim" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Save">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save &amp; Exit" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
+</AnchorPane>

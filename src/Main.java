@@ -18,6 +18,7 @@ public class Main extends Application {
         Parent root = loader.load();
         loginController LoginController = loader.getController();
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setTitle("ICM");
         primaryStage.show();
     }
 

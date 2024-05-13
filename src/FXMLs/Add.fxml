@@ -40,67 +40,68 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="Actions">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Add" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                  <MenuItem mnemonicParsing="false" text="Update" />
-               </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Print">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Print one customer" />
-            <MenuItem mnemonicParsing="false" text="Print all customers" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Print one claim" />
-            <MenuItem mnemonicParsing="false" text="Print all claims" />
-          </items>
-        </Menu>
-            <Menu mnemonicParsing="false" text="Save">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save &amp; Exit" />
-              </items>
-            </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="amount" layoutX="188.0" layoutY="120.0" prefHeight="25.0" prefWidth="261.0" promptText="Ex) 1500">
+            <TextField fx:id="amount" layoutX="169.0" layoutY="137.0" prefHeight="25.0" prefWidth="261.0" promptText="Ex) 1500">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="exam_date" layoutX="188.0" layoutY="160.0" prefHeight="25.0" prefWidth="261.0" promptText="mm/dd/yyyy">
+            <TextField fx:id="exam_date" layoutX="169.0" layoutY="177.0" prefHeight="25.0" prefWidth="261.0" promptText="mm/dd/yyyy">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="customerId" layoutX="188.0" layoutY="80.0" prefHeight="25.0" prefWidth="261.0" promptText="Ex) C1234567">
+            <TextField fx:id="customerId" layoutX="169.0" layoutY="97.0" prefHeight="25.0" prefWidth="261.0" promptText="Ex) C1234567">
                <font>
                   <Font size="10.0" />
                </font>
             </TextField>
-            <Label layoutX="243.0" layoutY="25.0" text="Customer Information">
+            <Label layoutX="223.0" layoutY="61.0" text="Customer Information">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="274.0" layoutY="304.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="91.0" text="submit" />
-            <Label layoutX="94.0" layoutY="126.0" text="Claim amount:" />
-            <Label layoutX="105.0" layoutY="86.0" text="Customer ID:" />
-            <Label layoutX="74.0" layoutY="166.0" text="Examination date:" />
-            <TextField fx:id="bank_info" layoutX="188.0" layoutY="200.0" prefHeight="25.0" prefWidth="261.0" promptText="bank name/holder name/card number" />
-            <TextField fx:id="documents" layoutX="188.0" layoutY="240.0" prefHeight="25.0" prefWidth="261.0" promptText="doc1.pdf/doc2.pdf/etc.." />
-            <Label layoutX="75.0" layoutY="206.0" text="Bank information:" />
-            <Label layoutX="110.0" layoutY="246.0" text="documents:" />
-         </children></AnchorPane>
-  </children>
-</VBox>
+            <Button layoutX="254.0" layoutY="316.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="91.0" text="submit" />
+            <Label layoutX="72.0" layoutY="143.0" text="Claim amount:" />
+            <Label layoutX="83.0" layoutY="103.0" text="Customer ID:" />
+            <Label layoutX="52.0" layoutY="183.0" text="Examination date:" />
+            <TextField fx:id="bank_info" layoutX="169.0" layoutY="217.0" prefHeight="25.0" prefWidth="261.0" promptText="bank name/holder name/card number" />
+            <TextField fx:id="documents" layoutX="169.0" layoutY="257.0" prefHeight="25.0" prefWidth="261.0" promptText="doc1.pdf/doc2.pdf/etc.." />
+            <Label layoutX="53.0" layoutY="223.0" text="Bank information:" />
+            <Label layoutX="88.0" layoutY="263.0" text="documents:" />
+          <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="600.0">
+            <menus>
+              <Menu mnemonicParsing="false" text="Actions">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Add" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" text="Update" />
+                     </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Print">
+                <items>
+                  <MenuItem mnemonicParsing="false" text="Print one customer" />
+                  <MenuItem mnemonicParsing="false" text="Print all customers" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Print one claim" />
+                  <MenuItem mnemonicParsing="false" text="Print all claims" />
+                </items>
+              </Menu>
+                  <Menu mnemonicParsing="false" text="Save">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save &amp; Exit" />
+                    </items>
+                  </Menu>
+            </menus>
+          </MenuBar>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
