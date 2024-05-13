@@ -30,7 +30,7 @@ public class loginController {
                 showAlert("Login Failed","Wrong ID or password entered");
             }
         } else {
-            System.out.println("textField 또는 passwordField 객체가 null입니다.");
+            System.out.println("entered value is not valid");
         }
     }
 
