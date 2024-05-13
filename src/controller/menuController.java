@@ -8,6 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import java.io.IOException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.application.Platform;
 
 public class menuController {
 
@@ -134,6 +138,34 @@ public class menuController {
             currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void saveBtnClicked(ActionEvent event) {
+        boolean saveAttempt = true;
+        if(saveAttempt) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("File saving");
+            alert.setHeaderText(null);
+            alert.setContentText("Progress is successfully saved.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void saveAndExit(ActionEvent event) {
+        boolean saveAttempt = true;
+        if(saveAttempt) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("File saving");
+            alert.setHeaderText(null);
+            alert.setContentText("Progress is successfully saved.");
+            alert.showAndWait().ifPresent(response -> {
+                if(response == ButtonType.OK) {
+                    Platform.exit();
+                }
+            });
         }
     }
 }

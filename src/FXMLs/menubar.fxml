@@ -28,8 +28,8 @@
                </Menu>
                <Menu mnemonicParsing="false" text="Save">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Save" />
-                       <MenuItem mnemonicParsing="false" text="Save &amp; Exit" />
+                       <MenuItem mnemonicParsing="false" text="Save" onAction="#saveBtnClicked" />
+                       <MenuItem mnemonicParsing="false" text="Save &amp; Exit" onAction="#saveAndExit" />
                    </items>
                </Menu>
            </menus>
