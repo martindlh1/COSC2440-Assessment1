@@ -42,33 +42,8 @@
 
 <Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="600.0">
-         <menus>
-        <Menu mnemonicParsing="false" text="Actions">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Add" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                  <MenuItem mnemonicParsing="false" text="Update" />
-               </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Print">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Print one customer" />
-            <MenuItem mnemonicParsing="false" text="Print all customers" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Print one claim" />
-            <MenuItem mnemonicParsing="false" text="Print all claims" />
-          </items>
-        </Menu>
-            <Menu mnemonicParsing="false" text="Save">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save &amp; Exit" />
-              </items>
-            </Menu>
-         </menus>
-      </MenuBar>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
+          <fx:include source="menubar.fxml" fx:id="menubar" />
          <children>
             <TextArea layoutY="24.0" prefHeight="375.0" prefWidth="600.0" editable="false" />
          </children>
